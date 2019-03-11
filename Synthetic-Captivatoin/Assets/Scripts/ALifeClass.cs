@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class ALifeClass : MonoBehaviour
 {
-    private void Start()
+    void Start()
     {
         Debug.Log("I am running");
+    }
+
+     void Update()
+    {
+        Debug.Log("I am here");
     }
 }
