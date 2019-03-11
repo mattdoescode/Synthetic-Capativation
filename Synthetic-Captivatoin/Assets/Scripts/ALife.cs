@@ -2,30 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ALife : MonoBehaviour
-{
-
+public class ALife : ALifeClass
+{ 
     public float speed = 1.0f;
 
     GameObject[] foodItem;
     GameObject Selection;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log("hello world");
-
-        foodItem = GameObject.FindGameObjectsWithTag("Food");
-        Selection = foodItem[0];
-
-        Debug.Log(Selection.transform.position);
-
-    }
-
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, Selection.transform.position, speed * Time.deltaTime);
-   
+        GameObject test = findCloseNeededResource("Food");
+
+        if (Vector3.Distance(test.transform.position,transform.position) > 13)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, test.transform.position, speed * Time.deltaTime);
+        }
     }
 }
