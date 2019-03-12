@@ -33,6 +33,7 @@ public class ALifeClass : MonoBehaviour
             return new GameObject();
         }else if(foundItem.Length == 1)
         {
+            Debug.Log("found 1 food");
             return foundItem[0];
         }
 
@@ -41,7 +42,7 @@ public class ALifeClass : MonoBehaviour
         int cloestObjectKnown = 0;
         for(int i = 0; i < foundItem.Length; i++)
         {
-            if(Vector3.Distance(foundItem[i].transform.position,transform.position) >
+            if(Vector3.Distance(foundItem[i].transform.position,transform.position) <
                Vector3.Distance(foundItem[cloestObjectKnown].transform.position, transform.position))
             {
                 cloestObjectKnown = i;
