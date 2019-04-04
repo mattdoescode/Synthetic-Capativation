@@ -64,8 +64,39 @@ public class ALifeClass : MonoBehaviour
         hunger--;
         rest--;
         thirst--;
-        Debug.Log(hunger + " " + thirst + " " + rest);
+        //Debug.Log(hunger + " " + thirst + " " + rest);
     }
+
+
+    
+
+    //REPRODUCTOIN 
+    //PRE: Method of reproduction and mate(s)
+    //POST: Created Swapn
+
+    //Factors on reproduction
+    // Thirst, hunger, rest
+    // reproduction takes time -> random at this point in time
+
+    public GameObject reproduce(int method, GameObject parent1 = null, GameObject parent2 = null)
+    {
+        
+
+        return new GameObject();
+
+    }
+
+
+
+    //Spawning life randomly at the start of the scene
+    //Random methods will not be used for long 
+    //PRE: Local land conditions & enviromental factors
+    //POST: simpliest form of life
+    public GameObject spawn()
+    {
+        return new GameObject();
+    }
+
 
 
     //PRE: String of Tag for a gameobject to find 
