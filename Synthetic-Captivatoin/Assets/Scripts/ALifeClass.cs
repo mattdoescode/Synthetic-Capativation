@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class ALifeClass : MonoBehaviour
 {
-
-    public GameObject ALifePrefab;
-
     //TRAILS OF LIFE
 
     //Potential traits to add to the ALIFE
-    //are these human traits?
     //power, independence, curiosity, acceptance, order, saving, honor, idealism, social contact, family, status, vengeance, physical exercise, and tranquility.
 
     //neccessaries for life
@@ -24,30 +20,17 @@ public class ALifeClass : MonoBehaviour
     //curosity -> exploring more
     public float curosity;
 
+
+
     //current state of the Alife (what is it doing)
     //do I need an enum for this?
     //this is even being used right now? 
     //this code is a mess
-    //enum CurrentState {
-    //    eatting = 0,
-    //    drinking = 0,
-    //    resting = 0
-    //};
-
-
-    //what does the alife eat? 
-    //plant life or other alife?
-    //public enum foodRequired
-    //{
-    //    Alife = 50,
-    //    Plant = 30,
-    //};
-
-    //percentage for ideal diet
-    //food falls into 2 catagorites plant and other alife
-    //int plantRequirement;
-    //int alifeRequirement;
-
+    enum CurrentState {
+        eatting = 0,
+        drinking = 0,
+        resting = 0
+    };
 
     public void Start()
     {
@@ -57,13 +40,9 @@ public class ALifeClass : MonoBehaviour
         //run lives costs every 2 seconds
         InvokeRepeating("lifeCosts", 5, 2);
 
-        //make this dynamic 
         hunger = 50;
         thirst = 50;
         rest = 100;
-
-        //plantRequirement = 100;
-        //alifeRequirement = 0;
     }
 
     //finite state machine here
@@ -89,6 +68,7 @@ public class ALifeClass : MonoBehaviour
         return "Nest";
     }
 
+
     public void lifeCosts()
     {
         //evertually add in code to factor in what state the ALife is in
@@ -109,6 +89,8 @@ public class ALifeClass : MonoBehaviour
 
     public GameObject reproduce(int method, GameObject parent1 = null, GameObject parent2 = null)
     {
+        
+
         return new GameObject();
     }
 
@@ -118,10 +100,10 @@ public class ALifeClass : MonoBehaviour
     //POST: simpliest form of life
     public GameObject spawn()
     {
-        //set everything here
-
-        return Instantiate(ALifePrefab);
+        return new GameObject();
     }
+
+
 
     //PRE: String of Tag for a gameobject to find 
     //POST: Returning game object with matching tag that is closest to play
