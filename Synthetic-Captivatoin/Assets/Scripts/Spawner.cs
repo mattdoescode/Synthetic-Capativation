@@ -5,11 +5,11 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
 
+    public GameObject ALifePrefab;
+
     private float nextSpawnTime;
 
-    public GameObject Alife;
     public float spawnDelay = 10;
-
 
     // Update is called once per frame
     void Update()
@@ -23,7 +23,8 @@ public class Spawner : MonoBehaviour
     private void Spawn()
     {
         nextSpawnTime = Time.time + spawnDelay;
-        Instantiate(Alife, transform.position, transform.rotation);
+        //can't instntiate with parameters so we do something else...
+        Instantiate(ALifePrefab, transform.position, transform.rotation);
     }
 
     private bool ShouldSpawn()
