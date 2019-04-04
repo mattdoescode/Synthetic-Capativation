@@ -7,6 +7,8 @@ TagManager:
   - Nest
   - Food
   - Water
+  - Life
+  - hunterNest
   layers:
   - Default
   - TransparentFX
