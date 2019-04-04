@@ -4,30 +4,41 @@ using UnityEngine;
 
 public class ALifeClass : MonoBehaviour
 {
-    //traits of the ALife
+    //TRAILS OF LIFE
+
+    //Potential traits to add to the ALIFE
+    //power, independence, curiosity, acceptance, order, saving, honor, idealism, social contact, family, status, vengeance, physical exercise, and tranquility.
+
+    //neccessaries for life
     public float hunger;
     public float thirst;
     public float rest;
-    //enum LifeFactors
-    //{
 
-    //}
+    //reproduction drive
+    public float romance;
+
+    //curosity -> exploring more
+    public float curosity;
+
+
 
     //current state of the Alife (what is it doing)
+    //do I need an enum for this?
+    //this is even being used right now? 
+    //this code is a mess
     enum CurrentState {
         eatting = 0,
         drinking = 0,
         resting = 0
     };
 
-
-
     public void Start()
     {
         //stops all rotation through physics simulations
         GetComponent<Rigidbody>().freezeRotation = true;
+
         //run lives costs every 2 seconds
-        InvokeRepeating("lifeCosts", 5, 1);
+        InvokeRepeating("lifeCosts", 5, 2);
 
         hunger = 50;
         thirst = 50;
@@ -54,21 +65,19 @@ public class ALifeClass : MonoBehaviour
             //go get food
             return "Rest";
         }
-
         return "Nest";
     }
 
 
     public void lifeCosts()
     {
+        //evertually add in code to factor in what state the ALife is in
+        //i.e. if moving hunger  & thirst depletes faster
         hunger--;
         rest--;
         thirst--;
         //Debug.Log(hunger + " " + thirst + " " + rest);
     }
-
-
-    
 
     //REPRODUCTOIN 
     //PRE: Method of reproduction and mate(s)
@@ -83,10 +92,7 @@ public class ALifeClass : MonoBehaviour
         
 
         return new GameObject();
-
     }
-
-
 
     //Spawning life randomly at the start of the scene
     //Random methods will not be used for long 
