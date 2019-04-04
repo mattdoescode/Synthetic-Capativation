@@ -24,31 +24,6 @@ public class ALifeClass : MonoBehaviour
     //curosity -> exploring more
     public float curosity;
 
-    //current state of the Alife (what is it doing)
-    //do I need an enum for this?
-    //this is even being used right now? 
-    //this code is a mess
-    //enum CurrentState {
-    //    eatting = 0,
-    //    drinking = 0,
-    //    resting = 0
-    //};
-
-
-    //what does the alife eat? 
-    //plant life or other alife?
-    //public enum foodRequired
-    //{
-    //    Alife = 50,
-    //    Plant = 30,
-    //};
-
-    //percentage for ideal diet
-    //food falls into 2 catagorites plant and other alife
-    //int plantRequirement;
-    //int alifeRequirement;
-
-
     public void Start()
     {
         //stops all rotation through physics simulations
@@ -61,9 +36,6 @@ public class ALifeClass : MonoBehaviour
         hunger = 50;
         thirst = 50;
         rest = 100;
-
-        //plantRequirement = 100;
-        //alifeRequirement = 0;
     }
 
     //finite state machine here
@@ -116,11 +88,11 @@ public class ALifeClass : MonoBehaviour
     //Random methods will not be used for long 
     //PRE: Local land conditions & enviromental factors
     //POST: simpliest form of life
-    public GameObject spawn()
+    public void Instantiate(int xPos, int yPos)
     {
         //set everything here
-
-        return Instantiate(ALifePrefab);
+        Debug.Log("xPos");
+        //return Instantiate(ALifePrefab);
     }
 
     //PRE: String of Tag for a gameobject to find 

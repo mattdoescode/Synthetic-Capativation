@@ -24,7 +24,12 @@ public class Spawner : MonoBehaviour
     {
         nextSpawnTime = Time.time + spawnDelay;
         //can't instntiate with parameters so we do something else...
-        Instantiate(ALifePrefab, transform.position, transform.rotation);
+        //GameObject spawned = Instantiate(ALifePrefab, transform.position, transform.rotation);
+
+        GameObject newObject = Instantiate(ALifePrefab) as GameObject;
+        //ALifeClass theObject = newObject.GetComponent<ALifeClass>();
+
+        //ALifeClass spawnedScript = spawned.GetComponent<>();
     }
 
     private bool ShouldSpawn()
