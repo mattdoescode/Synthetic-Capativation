@@ -95,6 +95,11 @@ public class ALifeClass : MonoBehaviour
         //return Instantiate(ALifePrefab);
     }
 
+    public void changeColor()
+    {
+        
+    }
+
     //PRE: String of Tag for a gameobject to find 
     //POST: Returning game object with matching tag that is closest to play
     public GameObject findCloseNeededResource(string toFind)
