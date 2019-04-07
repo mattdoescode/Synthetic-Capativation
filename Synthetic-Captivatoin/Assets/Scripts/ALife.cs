@@ -14,6 +14,14 @@ public class ALife : ALifeClass
 
         GameObject test = findCloseNeededResource(need);
 
+        if (!friendly)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, test.transform.position, speed * Time.deltaTime);
+            if (Vector3.Distance(test.transform.position, transform.position) < 1)
+                Destroy(test);
+            return;
+        }
+
         if (Vector3.Distance(test.transform.position,transform.position) > 13)
         {
             transform.position = Vector3.MoveTowards(transform.position, test.transform.position, speed * Time.deltaTime);
@@ -29,6 +37,10 @@ public class ALife : ALifeClass
                     break;
                 case "Water":
                     thirst = 100;
+                    break;
+                case "Alife":
+                    //delete the alife in consideration
+                    hunger = 100;
                     break;
                 default:
                     break;

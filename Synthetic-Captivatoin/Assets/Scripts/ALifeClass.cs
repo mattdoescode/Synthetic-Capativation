@@ -23,6 +23,8 @@ public class ALifeClass : MonoBehaviour
     //curosity -> exploring more
     public float curosity;
 
+    public bool friendly;
+
     public void Start()
     {
         //stops all rotation through physics simulations
@@ -42,21 +44,29 @@ public class ALifeClass : MonoBehaviour
     public string live()
     {
         //there has to be a better way of doing this...
-        if (hunger < 90)
+        if (friendly)
         {
-            //go get water
-            return "Food";
+            if (hunger < 90)
+            {
+                //go get water
+                return "Food";
+            }
+            else if (thirst < 80)
+            {
+                //go get food
+                return "Water";
+            }
+            else if (hunger < 80)
+            {
+                //go get food
+                return "Rest";
+            }
         }
-        else if (thirst < 80)
+        else
         {
-            //go get food
-            return "Water";
+            return "ALife1";
         }
-        else if (hunger < 80)
-        {
-            //go get food
-            return "Rest";
-        }
+
         return "Nest";
     }
 
@@ -98,6 +108,11 @@ public class ALifeClass : MonoBehaviour
     public void changeColor(Color color)
     {
         GetComponent<Renderer>().material.color = color ;
+    }
+
+    public void setFriendly(bool toSet)
+    {
+        friendly = toSet;
     }
 
     //PRE: String of Tag for a gameobject to find 

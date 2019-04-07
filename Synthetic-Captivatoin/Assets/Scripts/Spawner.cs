@@ -29,12 +29,20 @@ public class Spawner : MonoBehaviour
         //can't instntiate with parameters so we do something else...
         GameObject spawned = Instantiate(ALifePrefab, transform.position, transform.rotation);
 
-        ALifeClass alc = spawned.GetComponent<ALifeClass>();
+        ALifeClass thisAlife = spawned.GetComponent<ALifeClass>();
 
-        if(friendly)
-            alc.changeColor(new Color(0, 1.0f, 0, 1.0f));
+        if (friendly)
+        {
+            thisAlife.changeColor(new Color(0, 1.0f, 0, 1.0f));
+            thisAlife.setFriendly(true);
+            thisAlife.tag = "ALife1";
+        }
         else
-            alc.changeColor(new Color(1.0f, 0, 0, 1.0f));
+        {
+            thisAlife.changeColor(new Color(1.0f, 0, 0, 1.0f));
+            thisAlife.setFriendly(false);
+            thisAlife.tag = "ALife2";
+        }
     }
 
     private bool ShouldSpawn()
