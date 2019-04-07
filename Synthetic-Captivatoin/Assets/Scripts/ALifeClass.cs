@@ -144,4 +144,29 @@ public class ALifeClass : MonoBehaviour
         }
         return foundItem[cloestObjectKnown];
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        string collisionObj = collision.gameObject.tag;
+
+        switch (collisionObj)
+        {
+            case "Food":
+                hunger = 100;
+                break;
+            //floor collisions happen a lot
+            //how can this be cut down?
+            case "Water":
+                thirst = 100;
+                break;
+
+            case "Floor":
+                break;
+            
+            default:
+                //Debug.Log("NOT anticipated collision - collison with " + collisionObj);
+                break;
+        }
+    }
 }

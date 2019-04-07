@@ -134,6 +134,7 @@ MonoBehaviour:
   rest: 0
   romance: 0
   curosity: 0
+  friendly: 0
   speed: 20
 --- !u!1 &1093961305414256953
 GameObject:

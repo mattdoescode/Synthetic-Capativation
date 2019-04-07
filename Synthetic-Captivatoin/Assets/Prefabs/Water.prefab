@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1994034822542168003}
   - component: {fileID: 8204091731852810123}
   - component: {fileID: 1745197915193554751}
+  - component: {fileID: 1646255891211191133}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -27,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270850258736260557}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.5, y: 2, z: -9.68}
-  m_LocalScale: {x: -8.211061, y: 1.47378, z: 7.1162524}
+  m_LocalPosition: {x: 34.5, y: 2, z: -7.61}
+  m_LocalScale: {x: 10, y: 2, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -86,9 +87,21 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270850258736260557}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.55037093
   m_Height: 6.1327043
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: -0.05812034}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1646255891211191133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270850258736260557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cc3f8910dbfd244484deb2683fd3cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
