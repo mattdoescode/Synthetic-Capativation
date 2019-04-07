@@ -11,6 +11,9 @@ public class Spawner : MonoBehaviour
 
     public float spawnDelay = 10;
 
+    public bool friendly = false;
+
+
     // Update is called once per frame
     void Update()
     {
@@ -26,17 +29,12 @@ public class Spawner : MonoBehaviour
         //can't instntiate with parameters so we do something else...
         GameObject spawned = Instantiate(ALifePrefab, transform.position, transform.rotation);
 
-        //GameObject newObject = Instantiate(ALifePrefab) as GameObject;
-        //ALifeClass theObject = newObject.GetComponent<ALifeClass>();
         ALifeClass alc = spawned.GetComponent<ALifeClass>();
 
-        spawned.GetComponent<Renderer>().material.color = Color.green;
-
-
-        //alc.live();
-
-
-        //ALifeClass spawnedScript = spawned.GetComponent<>();
+        if(friendly)
+            alc.changeColor(new Color(0, 1.0f, 0, 1.0f));
+        else
+            alc.changeColor(new Color(1.0f, 0, 0, 1.0f));
     }
 
     private bool ShouldSpawn()

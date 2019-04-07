@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ALifeClass : MonoBehaviour
-{
-
+{ 
     public GameObject ALifePrefab;
 
     //TRAILS OF LIFE
@@ -95,9 +94,10 @@ public class ALifeClass : MonoBehaviour
         //return Instantiate(ALifePrefab);
     }
 
-    public void changeColor()
+    //change the current Alifes color
+    public void changeColor(Color color)
     {
-        
+        GetComponent<Renderer>().material.color = color ;
     }
 
     //PRE: String of Tag for a gameobject to find 
