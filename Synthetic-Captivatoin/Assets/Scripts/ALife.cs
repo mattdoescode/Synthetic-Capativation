@@ -14,6 +14,7 @@ public class ALife : ALifeClass
 
         GameObject target = findCloseNeededResource(need);
 
+        /*-
         if (!friendly)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
@@ -21,7 +22,7 @@ public class ALife : ALifeClass
                 Destroy(target);
             return;
         }
-
+        */
         //need to fix target closeness
 
         if (Vector3.Distance(target.transform.position,transform.position) > 1)
@@ -35,6 +36,8 @@ public class ALife : ALifeClass
                     rest = 100;
                     break;
                 case "Food":
+                    if (!friendly)
+                        Destroy(target);
                     hunger = 100;
                     break;
                 case "Water":

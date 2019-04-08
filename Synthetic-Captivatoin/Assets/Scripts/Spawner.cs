@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-        Debug.Log("SPAWNING");
+        //+Debug.Log("SPAWNING");
         nextSpawnTime = Time.time + spawnDelay;
         //can't instntiate with parameters so we do something else...
         GameObject spawned = Instantiate(ALifePrefab, transform.position, transform.rotation);

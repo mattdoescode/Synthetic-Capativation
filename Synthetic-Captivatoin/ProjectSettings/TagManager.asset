@@ -8,8 +8,9 @@ TagManager:
   - Food
   - Water
   - hunterNest
-  - Alife1
-  - Alife2
+  - ALife1
+  - ALife2
+  - Life
   layers:
   - Default
   - TransparentFX

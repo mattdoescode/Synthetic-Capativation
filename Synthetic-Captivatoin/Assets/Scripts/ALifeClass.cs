@@ -43,30 +43,20 @@ public class ALifeClass : MonoBehaviour
     //this doesn't seem to be done right to me
     public string live()
     {
-        //there has to be a better way of doing this...
-        if (friendly)
+        if (hunger < 90)
         {
-            if (hunger < 90)
-            {
-                //go get water
-                return "Food";
-            }
-            else if (thirst < 80)
-            {
-                //go get food
-                return "Water";
-            }
-            else if (hunger < 80)
-            {
-                //go get food
-                return "Rest";
-            }
+            return "Food";
         }
-        else
+        else if (thirst < 80)
         {
-            return "ALife1";
+            //go get food
+            return "Water";
         }
-
+        else if (hunger < 80)
+        {
+            //go get food
+            return "Rest";
+        }
         return "Nest";
     }
 
@@ -83,7 +73,6 @@ public class ALifeClass : MonoBehaviour
     //REPRODUCTOIN 
     //PRE: Method of reproduction and mate(s)
     //POST: Created Swapn
-
     //Factors on reproduction
     // Thirst, hunger, rest
     // reproduction takes time -> random at this point in time
@@ -119,20 +108,35 @@ public class ALifeClass : MonoBehaviour
     //POST: Returning game object with matching tag that is closest to play
     public GameObject findCloseNeededResource(string toFind)
     {
-        Debug.Log("searching for... " + toFind);
-        GameObject[] foundItem = GameObject.FindGameObjectsWithTag(toFind);
+        //Debug.Log("searching for... " + toFind);
+
+        GameObject[] foundItem;
+
+        if (!friendly)
+        {
+            if (toFind == "Food")
+            {
+                foundItem = GameObject.FindGameObjectsWithTag("ALife1");
+            }
+            else
+            {
+                foundItem = GameObject.FindGameObjectsWithTag(toFind);
+            }
+        }
+        else
+        {
+            foundItem = GameObject.FindGameObjectsWithTag(toFind);
+        }
         if(foundItem.Length == 0)
         {
             //if we didn't find anything we return an empty game object
-            //i think this is really wrong to do
+            //this is not the correct thing to do here
             return new GameObject();
         }else if(foundItem.Length == 1)
         {
             return foundItem[0];
         }
-
-        //sort through multiple found objects
-        //select cloest item
+        //determine what is closest of the needed resource
         int cloestObjectKnown = 0;
         for(int i = 0; i < foundItem.Length; i++)
         {
