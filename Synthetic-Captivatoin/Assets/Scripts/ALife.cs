@@ -20,10 +20,17 @@ public class ALife : ALifeClass
         }
 
         //need to fix target closeness
-        if (Vector3.Distance(target.transform.position,transform.position) > 1)
+
+
+        float distanceTo = Vector3.Distance(target.transform.position, transform.position);
+
+        if (distanceTo > 1 && need != "Nest")
         {
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-        } else
+        }
+        else if(distanceTo > 8)
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        else
         {
             switch (need)
             {
