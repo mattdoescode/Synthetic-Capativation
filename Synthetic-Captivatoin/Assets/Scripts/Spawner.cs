@@ -30,7 +30,9 @@ public class Spawner : MonoBehaviour
         //+Debug.Log("SPAWNING");
         nextSpawnTime = Time.time + spawnDelay;
         //can't instntiate with parameters so we do something else...
-        GameObject spawned = Instantiate(ALifePrefab, transform.position, transform.rotation);
+
+        //instanticate around the nest
+        GameObject spawned = Instantiate(ALifePrefab, transform.position + new Vector3(Random.Range(-8,8), 0, Random.Range(-8, 8)), transform.rotation);
 
         ALifeClass thisAlife = spawned.GetComponent<ALifeClass>();
 
