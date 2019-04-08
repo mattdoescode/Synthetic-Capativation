@@ -6,6 +6,8 @@ public class ALifeClass : MonoBehaviour
 { 
     public GameObject ALifePrefab;
 
+    public GameObject birthNest;
+
     //TRAILS OF LIFE
 
     //Potential traits to add to the ALIFE
@@ -109,6 +111,9 @@ public class ALifeClass : MonoBehaviour
     public GameObject findCloseNeededResource(string toFind)
     {
         //Debug.Log("searching for... " + toFind);
+
+        if (toFind == "Nest")
+            return birthNest;
 
         GameObject[] foundItem;
 

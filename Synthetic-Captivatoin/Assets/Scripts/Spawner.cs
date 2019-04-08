@@ -34,6 +34,8 @@ public class Spawner : MonoBehaviour
 
         ALifeClass thisAlife = spawned.GetComponent<ALifeClass>();
 
+        thisAlife.birthNest = gameObject;
+
         if (friendly)
         {
             thisAlife.changeColor(new Color(0, 1.0f, 0, 1.0f));
