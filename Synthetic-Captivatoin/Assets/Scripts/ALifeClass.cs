@@ -119,7 +119,7 @@ public class ALifeClass : MonoBehaviour
     //POST: Returning game object with matching tag that is closest to play
     public GameObject findCloseNeededResource(string toFind)
     {
-        //Debug.Log("searching for... " + toFind);
+        Debug.Log("searching for... " + toFind);
         GameObject[] foundItem = GameObject.FindGameObjectsWithTag(toFind);
         if(foundItem.Length == 0)
         {

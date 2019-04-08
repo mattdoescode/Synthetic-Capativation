@@ -40,7 +40,7 @@ public class ALife : ALifeClass
                 case "Water":
                     thirst = 100;
                     break;
-                case "Alife":
+                case "Alife1":
                     //delete the alife in consideration
                     hunger = 100;
                     break;
