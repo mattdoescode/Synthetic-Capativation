@@ -12,19 +12,14 @@ public class ALife : ALifeClass
     {
         string need = live();
 
-        GameObject target = findCloseNeededResource(need);
-
-        /*-
-        if (!friendly)
+       GameObject target = findCloseNeededResource(need);
+ 
+        if(target == null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-            if (Vector3.Distance(target.transform.position, transform.position) < 1)
-                Destroy(target);
             return;
         }
-        */
-        //need to fix target closeness
 
+        //need to fix target closeness
         if (Vector3.Distance(target.transform.position,transform.position) > 1)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);

@@ -18,6 +18,7 @@ public class ALifeClass : MonoBehaviour
     public float hunger;
     public float thirst;
     public float rest;
+    public float health;
 
     //reproduction drive
     public float romance;
@@ -34,11 +35,13 @@ public class ALifeClass : MonoBehaviour
 
         //run lives costs every 2 seconds
         InvokeRepeating("lifeCosts", 5, 2);
-
-        //make this dynamic 
+ 
         hunger = 50;
         thirst = 50;
         rest = 100;
+        health = 100;
+
+        Debug.Log("new object");
     }
 
     //finite state machine here
@@ -66,10 +69,36 @@ public class ALifeClass : MonoBehaviour
     {
         //evertually add in code to factor in what state the ALife is in
         //i.e. if moving hunger  & thirst depletes faster
-        hunger--;
-        rest--;
-        thirst--;
-        //Debug.Log(hunger + " " + thirst + " " + rest);
+        hunger -= 3;
+        rest -= 3;
+        thirst -= 3;
+
+        int totalDamage, foodDamage, thirstDamage, restDamage = 0;
+
+        foodDamage = calculateDamages(hunger);
+        thirstDamage = calculateDamages(thirst);
+        restDamage = calculateDamages(rest);
+
+        totalDamage = foodDamage + thirstDamage + restDamage;
+
+        if(totalDamage >= 1)
+        {
+            if (health >= 100)
+                return;
+            else if(health + totalDamage >= 100)
+            {
+                health = 100;
+                return;
+            }
+            else
+            {
+                health += totalDamage;
+                return;
+            }
+        }
+        health += totalDamage; 
+
+        Debug.Log(health);
     }
 
     //REPRODUCTOIN 
@@ -136,7 +165,8 @@ public class ALifeClass : MonoBehaviour
         {
             //if we didn't find anything we return an empty game object
             //this is not the correct thing to do here
-            return new GameObject();
+            changeColor(new Color(0, 0, 200));
+            return null;
         }else if(foundItem.Length == 1)
         {
             return foundItem[0];
@@ -152,6 +182,34 @@ public class ALifeClass : MonoBehaviour
             }
         }
         return foundItem[cloestObjectKnown];
+    }
+
+    int calculateDamages(float toCheck)
+    {
+        if (toCheck >= 60)
+        {
+            return 1;
+        }
+        else if (toCheck >= 35)
+        {
+            return 0;
+        }
+        else if (toCheck >= 25)
+        {
+            return -1;
+        }
+        else if (toCheck >= 10)
+        {
+            return -2;
+        }
+        else if (toCheck >= 5)
+        {
+            return -3;
+        }
+        else
+        {
+            return -5;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -172,7 +230,10 @@ public class ALifeClass : MonoBehaviour
 
             case "Floor":
                 break;
-            
+
+            case "ALife1":
+                break;
+
             default:
                 //Debug.Log("NOT anticipated collision - collison with " + collisionObj);
                 break;
