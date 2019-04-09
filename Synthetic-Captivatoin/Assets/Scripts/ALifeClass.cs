@@ -36,28 +36,31 @@ public class ALifeClass : MonoBehaviour
         //run lives costs every 2 seconds
         InvokeRepeating("lifeCosts", 5, 2);
  
-        hunger = 50;
-        thirst = 50;
+        hunger = 100;
+        thirst = 100;
         rest = 100;
-        health = 100;
-
-        Debug.Log("new object");
+        health = Random.Range(50,100);
     }
 
     //finite state machine here
     //this doesn't seem to be done right to me
     public string live()
     {
-        if (hunger < 90)
+        //how to we determine needs? 
+        //add in lazyness trait
+
+
+
+        if (hunger < 70)
         {
             return "Food";
         }
-        else if (thirst < 80)
+        else if (thirst < 70)
         {
             //go get food
             return "Water";
         }
-        else if (hunger < 80)
+        else if (rest < 70)
         {
             //go get food
             return "Rest";
@@ -69,8 +72,8 @@ public class ALifeClass : MonoBehaviour
     {
         //evertually add in code to factor in what state the ALife is in
         //i.e. if moving hunger  & thirst depletes faster
-        hunger -= 3;
-        rest -= 3;
+        hunger -= 2;
+        rest -= 2;
         thirst -= 3;
 
         int totalDamage, foodDamage, thirstDamage, restDamage = 0;
@@ -140,7 +143,6 @@ public class ALifeClass : MonoBehaviour
     public GameObject findCloseNeededResource(string toFind)
     {
         //Debug.Log("searching for... " + toFind);
-
         if (toFind == "Nest")
             return birthNest;
 

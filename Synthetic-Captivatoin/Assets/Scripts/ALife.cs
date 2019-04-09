@@ -20,8 +20,6 @@ public class ALife : ALifeClass
         }
 
         //need to fix target closeness
-
-
         float distanceTo = Vector3.Distance(target.transform.position, transform.position);
 
         if (distanceTo > 1 && need != "Nest")

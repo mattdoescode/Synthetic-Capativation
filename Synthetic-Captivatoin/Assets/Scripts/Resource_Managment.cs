@@ -28,15 +28,10 @@ public class Resource_Managment : MonoBehaviour
     bool checkSize()
     {
         Vector3 size = GetComponent<Collider>().bounds.size;
-        if (size.x <= 2)
-        {
-            Destroy(gameObject);
-            return false;
-        } else if(size.x >= 4.5)
+        if (size.x >= 4.5)
         {
             return true;
         }
-        Debug.Log("THIS SHOULD NEVER BE REACHED");
         return false;
     }
 
