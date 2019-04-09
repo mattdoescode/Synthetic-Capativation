@@ -19,7 +19,7 @@ public class Resource_Managment : MonoBehaviour
         
     }
 
-    void grow()
+    void grow() 
     {
         if(checkSize())
             transform.localScale += new Vector3(0.25f, 0.05f, 0.25f);
@@ -28,7 +28,12 @@ public class Resource_Managment : MonoBehaviour
     bool checkSize()
     {
         Vector3 size = GetComponent<Collider>().bounds.size;
-        if (size.x >= 4.5)
+        //Debug.Log(size.x);
+        if (size.x <= 2)
+        {
+            Destroy(gameObject); 
+        }
+        else if (size.x <= 22)
         {
             return true;
         }
@@ -38,6 +43,5 @@ public class Resource_Managment : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         transform.localScale -= new Vector3(0.25f, 0.05f, 0.25f);
-        checkSize();
     }
 }
