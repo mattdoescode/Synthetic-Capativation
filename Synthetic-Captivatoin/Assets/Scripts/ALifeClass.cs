@@ -62,7 +62,7 @@ public class ALifeClass : MonoBehaviour
         else if (rest < 70)
         {
             //go get food
-            return "Rest";
+            return "Nest";
         }
         return "Nest";
     }
@@ -159,6 +159,8 @@ public class ALifeClass : MonoBehaviour
             }
         }
         changeColor(lifeColor);
+        if (!friendly && toFind == "Food")
+            target = foundItem[cloestObjectKnown];
         return foundItem[cloestObjectKnown];
     }
 
@@ -227,15 +229,16 @@ public class ALifeClass : MonoBehaviour
     {
         string collisionObj = collision.gameObject.tag;
 
+        Debug.Log("COLLISION WITH " + collisionObj);
+
+
         switch (collisionObj)
         {
             case "Nest":
                 rest = 100;
                 break;
             case "Food":
-                reproduce();
-                if (!friendly)
-                    Destroy(target);
+                //reproduce();
                 hunger = 100;
                 break;
             //floor collisions happen a lot
@@ -246,6 +249,9 @@ public class ALifeClass : MonoBehaviour
             case "Floor":
                 break;
             case "ALife1":
+                if (!friendly)
+                    Destroy(target);
+                hunger = 100;
                 break;
             default:
                 //Debug.Log("NOT anticipated collision - collison with " + collisionObj);

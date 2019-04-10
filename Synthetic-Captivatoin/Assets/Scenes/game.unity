@@ -127,7 +127,7 @@ PrefabInstance:
     - target: {fileID: 9204572893204110984, guid: 42998575b9cc3f0459884c44b93f428b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9204572893204110988, guid: 42998575b9cc3f0459884c44b93f428b,
         type: 3}
@@ -305,7 +305,7 @@ PrefabInstance:
     - target: {fileID: 4321341716879486261, guid: 42998575b9cc3f0459884c44b93f428b,
         type: 3}
       propertyPath: spawnDelay
-      value: 30
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4321341716879486261, guid: 42998575b9cc3f0459884c44b93f428b,
         type: 3}
