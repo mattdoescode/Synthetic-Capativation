@@ -5,8 +5,8 @@ using UnityEngine;
 public class ALifeClass : MonoBehaviour
 { 
     public GameObject ALifePrefab;
-
     public GameObject birthNest;
+    public GameObject target;
 
     //TRAILS OF LIFE
 
@@ -48,9 +48,6 @@ public class ALifeClass : MonoBehaviour
     {
         //how to we determine needs? 
         //add in lazyness trait
-
-
-
         if (hunger < 70)
         {
             return "Food";
@@ -100,31 +97,7 @@ public class ALifeClass : MonoBehaviour
             }
         }
         health += totalDamage; 
-
-        Debug.Log(health);
-    }
-
-    //REPRODUCTOIN 
-    //PRE: Method of reproduction and mate(s)
-    //POST: Created Swapn
-    //Factors on reproduction
-    // Thirst, hunger, rest
-    // reproduction takes time -> random at this point in time
-
-    public GameObject reproduce(int method, GameObject parent1 = null, GameObject parent2 = null)
-    {
-        return new GameObject();
-    }
-
-    //Spawning life randomly at the start of the scene
-    //Random methods will not be used for long 
-    //PRE: Local land conditions & enviromental factors
-    //POST: simpliest form of life
-    public void Instantiate(int xPos, int yPos)
-    {
-        //set everything here
-        Debug.Log("xPos");
-        //return Instantiate(ALifePrefab);
+        //Debug.Log(health);
     }
 
     //change the current Alifes color
@@ -186,6 +159,37 @@ public class ALifeClass : MonoBehaviour
         return foundItem[cloestObjectKnown];
     }
 
+
+    //REPRODUCTOIN 
+    //PRE: Method of reproduction and mate(s)
+    //POST: Created Swapn
+    //Factors on reproduction
+    // Thirst, hunger, rest
+    // reproduction takes time -> random at this point in time
+    //Function to produce offsping
+    //sexual and asexual means here
+    //https://www.diffen.com/difference/Asexual_Reproduction_vs_Sexual_Reproduction
+    public GameObject reproduce(GameObject partner = null)
+    {
+
+        Debug.Log("repo time");
+
+        if(partner == null)
+        {
+            //asexual stuff here
+            GameObject spawn = Instantiate(ALifePrefab, gameObject.transform.position + new Vector3(Random.Range(-0.5f,0.5f), 0, Random.Range(-0.5f, 0.5f)), gameObject.transform.rotation);
+            ALifeClass thisAlife = spawn.GetComponent<ALifeClass>();
+            thisAlife.changeColor(new Color(0, 1.0f, 0, 1.0f));
+            thisAlife.setFriendly(true);
+            thisAlife.tag = "ALife1";
+        }
+        else
+        {
+            //sexual stuff here 
+        }
+        return new GameObject();
+    }
+
     int calculateDamages(float toCheck)
     {
         if (toCheck >= 60)
@@ -214,6 +218,8 @@ public class ALifeClass : MonoBehaviour
         }
     }
 
+    //collision detection 
+    //collisions happen with other alife and resources
     private void OnCollisionEnter(Collision collision)
     {
 
@@ -221,7 +227,15 @@ public class ALifeClass : MonoBehaviour
 
         switch (collisionObj)
         {
+            case "Nest":
+                rest = 100;
+                break;
+
+
             case "Food":
+                reproduce();
+                if (!friendly)
+                    Destroy(target);
                 hunger = 100;
                 break;
             //floor collisions happen a lot

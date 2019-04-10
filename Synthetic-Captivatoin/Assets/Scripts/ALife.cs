@@ -12,9 +12,9 @@ public class ALife : ALifeClass
     {
         string need = live();
 
-       GameObject target = findCloseNeededResource(need);
- 
-        if(target == null)
+        target = findCloseNeededResource(need);
+
+        if (target == null)
         {
             return;
         }
@@ -28,28 +28,11 @@ public class ALife : ALifeClass
         }
         else if(distanceTo > 8)
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        //move this shit to on trigger
         else
         {
-            switch (need)
-            {
-                case "Nest":
-                    rest = 100;
-                    break;
-                case "Food":
-                    if (!friendly)
-                        Destroy(target);
-                    hunger = 100;
-                    break;
-                case "Water":
-                    thirst = 100;
-                    break;
-                case "Alife1":
-                    //delete the alife in consideration
-                    hunger = 100;
-                    break;
-                default:
-                    break;
-            }
+           //nothing to do here
+           //code moved to on collision
         }
     }
 }
