@@ -43,5 +43,6 @@ public class Resource_Managment : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         transform.localScale -= new Vector3(0.25f, 0.05f, 0.25f);
+        checkSize();
     }
 }

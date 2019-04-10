@@ -8,6 +8,8 @@ public class ALifeClass : MonoBehaviour
     public GameObject birthNest;
     public GameObject target;
 
+    public Color lifeColor;
+
     //TRAILS OF LIFE
 
     //Potential traits to add to the ALIFE
@@ -103,7 +105,7 @@ public class ALifeClass : MonoBehaviour
     //change the current Alifes color
     public void changeColor(Color color)
     {
-        GetComponent<Renderer>().material.color = color ;
+        GetComponent<Renderer>().material.color = lifeColor = color ;
     }
 
     public void setFriendly(bool toSet)
@@ -156,6 +158,7 @@ public class ALifeClass : MonoBehaviour
                 cloestObjectKnown = i;
             }
         }
+        changeColor(lifeColor);
         return foundItem[cloestObjectKnown];
     }
 
@@ -222,7 +225,6 @@ public class ALifeClass : MonoBehaviour
     //collisions happen with other alife and resources
     private void OnCollisionEnter(Collision collision)
     {
-
         string collisionObj = collision.gameObject.tag;
 
         switch (collisionObj)
@@ -230,8 +232,6 @@ public class ALifeClass : MonoBehaviour
             case "Nest":
                 rest = 100;
                 break;
-
-
             case "Food":
                 reproduce();
                 if (!friendly)
@@ -243,13 +243,10 @@ public class ALifeClass : MonoBehaviour
             case "Water":
                 thirst = 100;
                 break;
-
             case "Floor":
                 break;
-
             case "ALife1":
                 break;
-
             default:
                 //Debug.Log("NOT anticipated collision - collison with " + collisionObj);
                 break;
