@@ -255,7 +255,7 @@ public class ALifeClass : MonoBehaviour
                 hunger = 100;
                 break;
             default:
-                //Debug.Log("NOT anticipated collision - collison with " + collisionObj);
+                Debug.Log("NOT anticipated collision - collison with " + collisionObj);
                 break;
         }
     }

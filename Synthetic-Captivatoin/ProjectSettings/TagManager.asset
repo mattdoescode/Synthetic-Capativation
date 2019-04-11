@@ -11,6 +11,7 @@ TagManager:
   - ALife1
   - ALife2
   - Life
+  - Floor
   layers:
   - Default
   - TransparentFX
