@@ -40,12 +40,14 @@ public class Spawner : MonoBehaviour
 
         if (friendly)
         {
+            thisAlife.lifeColor = new Color(0, 1.0f, 0, 1.0f);
             thisAlife.changeColor(new Color(0, 1.0f, 0, 1.0f));
             thisAlife.setFriendly(true);
             thisAlife.tag = "ALife1";
         }
         else
         {
+            thisAlife.lifeColor = new Color(1.0f, 0, 0, 1.0f);
             thisAlife.changeColor(new Color(1.0f, 0, 0, 1.0f));
             thisAlife.setFriendly(false);
             thisAlife.tag = "ALife2";

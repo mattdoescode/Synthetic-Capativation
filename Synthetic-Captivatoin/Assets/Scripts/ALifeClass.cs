@@ -105,7 +105,7 @@ public class ALifeClass : MonoBehaviour
     //change the current Alifes color
     public void changeColor(Color color)
     {
-        GetComponent<Renderer>().material.color = lifeColor = color ;
+        GetComponent<Renderer>().material.color = color ;
     }
 
     public void setFriendly(bool toSet)
@@ -146,6 +146,7 @@ public class ALifeClass : MonoBehaviour
             return null;
         }else if(foundItem.Length == 1)
         {
+            changeColor(lifeColor);
             return foundItem[0];
         }
         //determine what is closest of the needed resource
@@ -191,6 +192,7 @@ public class ALifeClass : MonoBehaviour
         else
         {
             //sexual stuff here 
+            
         }
         return new GameObject();
     }
@@ -229,8 +231,7 @@ public class ALifeClass : MonoBehaviour
     {
         string collisionObj = collision.gameObject.tag;
 
-        Debug.Log("COLLISION WITH " + collisionObj);
-
+        //Debug.Log("COLLISION WITH " + collisionObj);
 
         switch (collisionObj)
         {
