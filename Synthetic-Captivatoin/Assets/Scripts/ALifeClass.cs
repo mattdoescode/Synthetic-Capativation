@@ -250,12 +250,14 @@ public class ALifeClass : MonoBehaviour
             case "Floor":
                 break;
             case "ALife1":
-                if (!friendly)
+                if(gameObject.tag == "ALife2" && target.tag == "ALife1")
+                {
                     Destroy(target);
-                hunger = 100;
+                    hunger = 100;
+                }
                 break;
             default:
-                Debug.Log("NOT anticipated collision - collison with " + collisionObj);
+                Debug.Log("NOT anticipated collision - " + gameObject.tag + " collided with " + collisionObj + ". Target was " + target.tag);
                 break;
         }
     }
