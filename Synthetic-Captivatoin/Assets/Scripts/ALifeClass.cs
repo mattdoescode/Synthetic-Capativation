@@ -257,7 +257,7 @@ public class ALifeClass : MonoBehaviour
                 }
                 break;
             default:
-                if(gameObject.tag != null && target.tag != null)
+                if(gameObject.tag != null && target != null)
                    Debug.Log("NOT anticipated collision - " + gameObject.tag + " collided with " + collisionObj + ". Target was " + target.tag);
                 break;
         }
