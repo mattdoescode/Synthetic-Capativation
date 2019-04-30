@@ -37,6 +37,9 @@ public class ALifeClass : MonoBehaviour
 
         //run lives costs every 2 seconds
         InvokeRepeating("lifeCosts", 5, 2);
+
+        //if the alife fell off of the map kill it
+        InvokeRepeating("falling", 30, 30);
  
         hunger = 100;
         thirst = 100;
@@ -223,6 +226,13 @@ public class ALifeClass : MonoBehaviour
         {
             return -5;
         }
+    }
+
+    //destory game object if it fell
+    private void falling()
+    {
+        if (gameObject.transform.position.y < -20)
+            Destroy(gameObject);
     }
 
     //collision detection 
