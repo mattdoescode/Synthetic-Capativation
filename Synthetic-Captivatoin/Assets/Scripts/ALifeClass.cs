@@ -103,6 +103,10 @@ public class ALifeClass : MonoBehaviour
         }
         health += totalDamage; 
         //Debug.Log(health);
+
+        if(health < 0)
+            Destroy(gameObject);
+
     }
 
     //change the current Alifes color
@@ -260,7 +264,8 @@ public class ALifeClass : MonoBehaviour
             case "Floor":
                 break;
             case "ALife1":
-                if(gameObject.tag == "ALife2" && target.tag == "ALife1")
+                
+                if(gameObject.tag == "ALife2" && target != null && target.tag == "ALife1")
                 {
                     Destroy(target);
                     hunger = 100;
