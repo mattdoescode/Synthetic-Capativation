@@ -63,9 +63,14 @@ public class spawn_resorces : MonoBehaviour
 
         if(Random.Range(0,10) <= 4){
             thisResource = Instantiate(foodPrefab, new Vector3(xPos, 0.3f, zPos), transform.rotation);
+            
         } else {
             thisResource = Instantiate(waterPrefeb, new Vector3(xPos, 0.3f, zPos), transform.rotation);
         }
+
+        Resource_Managment rManagment = thisResource.GetComponent<Resource_Managment>();
+        float size = Random.Range(9, 23);
+        rManagment.setSize(new Vector3(size,3f,size));
     }
     
     void spawn(){

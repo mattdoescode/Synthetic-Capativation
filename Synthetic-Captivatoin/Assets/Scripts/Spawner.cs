@@ -62,8 +62,4 @@ public class Spawner : MonoBehaviour
     public void setFriendly(bool toBe){
         friendly = toBe;
     }
-
-
-
-
 }
