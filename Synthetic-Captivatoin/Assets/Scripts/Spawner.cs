@@ -34,6 +34,8 @@ public class Spawner : MonoBehaviour
         //instanticate around the nest
         GameObject spawned = Instantiate(ALifePrefab, transform.position + new Vector3(Random.Range(-8,8), 0, Random.Range(-8, 8)), transform.rotation);
 
+        spawned.transform.SetParent(gameObject.transform);
+
         ALifeClass thisAlife = spawned.GetComponent<ALifeClass>();
 
         thisAlife.birthNest = gameObject;
