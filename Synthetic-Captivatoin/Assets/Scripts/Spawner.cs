@@ -27,14 +27,13 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-        //+Debug.Log("SPAWNING");
+        //Debug.Log("SPAWNING");
         nextSpawnTime = Time.time + spawnDelay;
         //can't instntiate with parameters so we do something else...
 
-        //instanticate around the nest
-        GameObject spawned = Instantiate(ALifePrefab, transform.position + new Vector3(Random.Range(-8,8), 0, Random.Range(-8, 8)), transform.rotation);
-
-        spawned.transform.SetParent(gameObject.transform);
+        //instanticate around the nest, and set nest to be the parent
+        GameObject spawned = Instantiate(ALifePrefab, transform.position + new Vector3(Random.Range(-8,8), 0, Random.Range(-8, 8)), transform.rotation, gameObject.transform);
+        //spawned.transform.SetParent(gameObject.transform);
 
         ALifeClass thisAlife = spawned.GetComponent<ALifeClass>();
 
@@ -55,9 +54,16 @@ public class Spawner : MonoBehaviour
             thisAlife.tag = "ALife2";
         }
     }
-
     private bool ShouldSpawn()
     {
         return Time.time >= nextSpawnTime;
     }
+
+    public void setFriendly(bool toBe){
+        friendly = toBe;
+    }
+
+
+
+
 }
