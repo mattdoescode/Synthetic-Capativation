@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class spawn_resorces : MonoBehaviour
 {
-
-
     public GameObject NestPrefab;
     public GameObject waterPrefeb;
     public GameObject foodPrefab;
     public GameObject terrain;
+
+    GameObject thisResource;
 
     int preX = 0;
     float xPos, zPos;
@@ -48,36 +48,28 @@ public class spawn_resorces : MonoBehaviour
             }
         }
 
-        GameObject thisResource;
         //setup food + water
-        for(int i=0; i < 40; i++){
-            xPos = Random.Range(-bounds.x / 2,bounds.x /2);
-            zPos = Random.Range(-bounds.z / 2,bounds.z /2); 
-
-            if(Random.Range(0,10) <= 5){
-               //spawn friendly nest
-                thisResource = Instantiate(foodPrefab, new Vector3(xPos, 0.3f, zPos), transform.rotation);
-            } else {
-                //unfriendly nest
-                thisResource = Instantiate(waterPrefeb, new Vector3(xPos, 0.3f, zPos), transform.rotation);
-
-            }
-
+        for(int i=0; i < 45; i++){
+            spawnFoodOrWater();
         }
-
-
         Invoke("spawn", 5);
     }
 
+    void spawnFoodOrWater()
+    {
+        Vector3 bounds = terrain.GetComponent<Collider>().bounds.size;
+        xPos = Random.Range(-bounds.x / 2,bounds.x /2);
+        zPos = Random.Range(-bounds.z / 2,bounds.z /2); 
 
-
-    void spawn(){        
-        Debug.Log("Running");
-
-        //
-
-
-
+        if(Random.Range(0,10) <= 4){
+            thisResource = Instantiate(foodPrefab, new Vector3(xPos, 0.3f, zPos), transform.rotation);
+        } else {
+            thisResource = Instantiate(waterPrefeb, new Vector3(xPos, 0.3f, zPos), transform.rotation);
+        }
+    }
+    
+    void spawn(){
+        spawnFoodOrWater();
         int x = Random.Range(3,14) + (preX / 2);
         Invoke("spawn", x);
     }
