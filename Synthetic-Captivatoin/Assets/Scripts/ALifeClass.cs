@@ -10,6 +10,8 @@ public class ALifeClass : MonoBehaviour
 
     public Color lifeColor;
 
+    public bool hasNeedNotFilled = false;  
+
     //TRAILS OF LIFE
 
     //Potential traits to add to the ALIFE
@@ -23,10 +25,10 @@ public class ALifeClass : MonoBehaviour
     public float health;
 
     //reproduction drive
-    public float romance;
+    //public float romance;
 
     //curosity -> exploring more
-    public float curosity;
+    //public float curosity;
 
     public bool friendly;
 
@@ -106,6 +108,74 @@ public class ALifeClass : MonoBehaviour
             Destroy(gameObject);
 
     }
+        /// https://stackoverflow.com/questions/801406/c-create-a-lighter-darker-color-based-on-a-system-color/801431
+        /// Creates color with corrected brightness
+        /// <param name="color">Color to correct.</param>
+        /// <param name="correctionFactor">The brightness correction factor. Must be between -1 and 1. 
+        /// Negative values produce darker colors.</param>
+        /// <returns>
+        /// Corrected <see cref="Color"/> structure.
+        /// </returns>
+        public Color ChangeColorBrightness(Color color, float correctionFactor)
+        {
+            Debug.Log(color);
+
+            //float red,green,blue;
+
+            if(gameObject.tag == "ALife2")
+            {
+                color.r = color.r / 2; 
+                return (new Color(color.r, lifeColor.g, lifeColor.b));
+            }
+            if(gameObject.tag == "ALife1")
+            {
+                color.g = color.g / 2; 
+                return (new Color(lifeColor.r, color.g, lifeColor.b));
+            }
+            
+            return lifeColor;
+
+            //Debug.Log(new Color(red, green, blue));
+            //return new Color(red, green, blue);
+
+
+            // I CAN'T GET THE COLORS WORKING....
+            // DOes this have something to do with FLOAT math? 
+            // if(color.r > 0)
+            //      red = (float)color.r;
+            // else
+            //      red = 0f;
+
+            // if(color.g > 0)
+            //      green = (float)color.g;
+            // else
+            //      green = 0f;
+
+            // Debug.Log(green);
+
+            // if(color.b > 0)
+            //      blue = (float)color.b;
+            // else
+            //      blue = 0f;
+
+            // if (correctionFactor > 0)
+            // {
+            //     correctionFactor = 1 + correctionFactor;
+            //     red *= correctionFactor;
+            //     green *= correctionFactor;
+            //     blue *= correctionFactor;
+            // }
+            // else
+            // {
+            //     red = color.r - correctionFactor;
+            //     blue = color.b - correctionFactor;
+            //     green = color.g - correctionFactor;
+            //     Debug.Log(green);
+            // }
+
+            // Debug.Log(new Color(red, green, blue));
+            // return new Color(red, green, blue);
+        }
 
     //change the current Alifes color
     public void changeColor(Color color)
@@ -147,12 +217,16 @@ public class ALifeClass : MonoBehaviour
         {
             //if we didn't find anything we return an empty game object
             //this is not the correct thing to do here
-            //changeColor(new Color(0, 0, 200));
-            Debug.Log("Can't find what we need");
+
+            if(!hasNeedNotFilled){
+                lifeColor = ChangeColorBrightness(lifeColor, -0.3f);
+                changeColor(lifeColor);
+                hasNeedNotFilled = true;
+            }
+
             return birthNest;
         }else if(foundItem.Length == 1)
         {
-            //changeColor(lifeColor);
             return foundItem[0];
         }
         //determine what is closest of the needed resource
@@ -237,7 +311,7 @@ public class ALifeClass : MonoBehaviour
         if (gameObject.transform.position.y < -20)
             Destroy(gameObject);
     }
-
+ 
     //collision detection 
     //collisions happen with other alife and resources
     private void OnCollisionEnter(Collision collision)
