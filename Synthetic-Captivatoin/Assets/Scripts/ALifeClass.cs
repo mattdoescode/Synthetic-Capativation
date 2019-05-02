@@ -12,6 +12,9 @@ public class ALifeClass : MonoBehaviour
 
     public bool hasNeedNotFilled = false;  
 
+    //how fast the alive moves
+    public float speed = 20f;
+
     //TRAILS OF LIFE
 
     //Potential traits to add to the ALIFE

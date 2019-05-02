@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class ALife : ALifeClass
 { 
-    //how quickly the Alife moves
-    public float speed = 1.0f;
-
-
     void Update()
     {
         string need = live();
