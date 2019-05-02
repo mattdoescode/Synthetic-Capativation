@@ -14,21 +14,16 @@ public class ALife : ALifeClass
 
         target = findCloseNeededResource(need);
 
-        if (target == null)
-        {
-            return;
-        }
-
         //need to fix target closeness
         float distanceTo = Vector3.Distance(target.transform.position, transform.position);
 
-        if (distanceTo > 1 && need != "Nest")
+        if (distanceTo > 1 && target.tag != "Nest")
         {
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
         }
         else if(distanceTo > 8)
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-        //move this shit to on trigger
+        //move this to on trigger
         else
         {
            //nothing to do here

@@ -59,12 +59,10 @@ public class ALifeClass : MonoBehaviour
         }
         else if (thirst < 70)
         {
-            //go get food
             return "Water";
         }
         else if (rest < 70)
         {
-            //go get food
             return "Nest";
         }
         return "Nest";
@@ -149,11 +147,12 @@ public class ALifeClass : MonoBehaviour
         {
             //if we didn't find anything we return an empty game object
             //this is not the correct thing to do here
-            changeColor(new Color(0, 0, 200));
-            return null;
+            //changeColor(new Color(0, 0, 200));
+            Debug.Log("Can't find what we need");
+            return birthNest;
         }else if(foundItem.Length == 1)
         {
-            changeColor(lifeColor);
+            //changeColor(lifeColor);
             return foundItem[0];
         }
         //determine what is closest of the needed resource
@@ -272,8 +271,8 @@ public class ALifeClass : MonoBehaviour
                 }
                 break;
             default:
-                if(gameObject.tag != null && target != null)
-                   Debug.Log("NOT anticipated collision - " + gameObject.tag + " collided with " + collisionObj + ". Target was " + target.tag);
+                //if(gameObject.tag != null && target != null)
+                   //Debug.Log("NOT anticipated collision - " + gameObject.tag + " collided with " + collisionObj + ". Target was " + target.tag);
                 break;
         }
     }
