@@ -75,6 +75,9 @@ public class ALifeClass : MonoBehaviour
 
     public void lifeCosts()
     {
+        if(health < 0)
+            Destroy(gameObject);
+
         //evertually add in code to factor in what state the ALife is in
         //i.e. if moving hunger  & thirst depletes faster
         hunger -= 2;
@@ -88,7 +91,6 @@ public class ALifeClass : MonoBehaviour
         restDamage = calculateDamages(rest);
 
         totalDamage = foodDamage + thirstDamage + restDamage;
-
         if(totalDamage >= 1)
         {
             if (health >= 100)
@@ -106,10 +108,6 @@ public class ALifeClass : MonoBehaviour
         }
         health += totalDamage; 
         //Debug.Log(health);
-
-        if(health < 0)
-            Destroy(gameObject);
-
     }
         /// https://stackoverflow.com/questions/801406/c-create-a-lighter-darker-color-based-on-a-system-color/801431
         /// Creates color with corrected brightness
@@ -121,7 +119,7 @@ public class ALifeClass : MonoBehaviour
         /// </returns>
         public Color ChangeColorBrightness(Color color, float correctionFactor)
         {
-            Debug.Log(color);
+            //Debug.Log(color);
 
             //float red,green,blue;
 
