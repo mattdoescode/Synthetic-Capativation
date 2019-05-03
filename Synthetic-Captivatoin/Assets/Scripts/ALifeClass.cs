@@ -46,7 +46,8 @@ public class ALifeClass : MonoBehaviour
         InvokeRepeating("falling", 30, 30);
 
         //reproduction time
-        Invoke("reproduce", Random.Range(50,73));
+        //reproduction time
+
 
         hunger = 100;
         thirst = 100;
@@ -280,20 +281,14 @@ public class ALifeClass : MonoBehaviour
 
             }
             thisAlife.changeColor(thisAlife.lifeColor);
-            
-            //WHY DOES THE NEXT LINE THROW AN ERROR?!
-            //Debug.Log(gameObject.movementSpeed);
+            thisAlife.birthNest = birthNest;
 
-            //Debug.Log(gameObject.rest);
-
-            thisAlife.birthNest = (thisAlife)gameObject.birthNest;
-
-            thisAlife.movementSpeed = Random.Range(18,22);
+            thisAlife.movementSpeed = movementSpeed + Random.Range(-2,2);
             float scale = Random.Range(-0.1f,0.01f);
             thisAlife.transform.localScale = gameObject.transform.localScale + new Vector3(scale, scale, scale);
             
 
-            Invoke("reproduce", Random.Range(45,90));
+            
         
         return;
     }
