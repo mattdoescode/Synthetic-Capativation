@@ -13,7 +13,7 @@ public class ALifeClass : MonoBehaviour
     public bool hasNeedNotFilled = false;  
 
     //how fast the alive moves
-    public float speed = 20f;
+    public float speed;
 
     //TRAILS OF LIFE
 
@@ -45,6 +45,9 @@ public class ALifeClass : MonoBehaviour
 
         //if the alife fell off of the map kill it
         InvokeRepeating("falling", 30, 30);
+
+        //reproduction time
+        Invoke("reproduce", Random.Range(50,73));
  
         hunger = 100;
         thirst = 100;
@@ -246,7 +249,6 @@ public class ALifeClass : MonoBehaviour
         return foundItem[cloestObjectKnown];
     }
 
-
     //REPRODUCTOIN 
     //PRE: Method of reproduction and mate(s)
     //POST: Created Swapn
@@ -256,26 +258,37 @@ public class ALifeClass : MonoBehaviour
     //Function to produce offsping
     //sexual and asexual means here
     //https://www.diffen.com/difference/Asexual_Reproduction_vs_Sexual_Reproduction
-    public GameObject reproduce(GameObject partner = null)
+    public void reproduce()
     {
 
         Debug.Log("repo time");
 
-        if(partner == null)
-        {
+        
+    
             //asexual stuff here
             GameObject spawn = Instantiate(ALifePrefab, gameObject.transform.position + new Vector3(Random.Range(-0.5f,0.5f), 0, Random.Range(-0.5f, 0.5f)), gameObject.transform.rotation);
             ALifeClass thisAlife = spawn.GetComponent<ALifeClass>();
-            thisAlife.changeColor(new Color(0, 1.0f, 0, 1.0f));
-            thisAlife.setFriendly(true);
-            thisAlife.tag = "ALife1";
-        }
-        else
-        {
-            //sexual stuff here 
-            
-        }
-        return new GameObject();
+
+
+            if(gameObject.tag == "ALife1"){
+                thisAlife.friendly = false;
+                thisAlife.tag = "ALife1";
+                thisAlife.lifeColor = new Color(0, 0.8f, 0, 1f);
+            } else {
+                thisAlife.friendly = true;
+                thisAlife.tag = "ALife2";
+                thisAlife.lifeColor = new Color(0.8f, 0, 0, 1f);
+            }
+            thisAlife.changeColor(thisAlife.lifeColor);
+
+
+            float scale = Random.Range(-0.1f,0.01f);
+            thisAlife.transform.localScale = gameObject.transform.localScale + new Vector3(scale, scale, scale);
+            thisAlife.speed = 20f;
+
+            Invoke("reproduce", Random.Range(45,90));
+        
+        return;
     }
 
     int calculateDamages(float toCheck)

@@ -13,19 +13,26 @@ public class Spawner : MonoBehaviour
 
     public bool friendly = false;
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (ShouldSpawn())
+    void Start(){
+        int rand = Random.Range(2,5);
+        for(int i = 0; i < rand; i++)
         {
-            Spawn();
+            spawn();
         }
-        else
-            return;
     }
 
-    private void Spawn()
+    // Update is called once per frame
+    // void Update()
+    // {
+    //     if (ShouldSpawn())
+    //     {
+    //         Spawn();
+    //     }
+    //     else
+    //         return;
+    // }
+
+    private void spawn()
     {
         //Debug.Log("SPAWNING");
         nextSpawnTime = Time.time + spawnDelay;
