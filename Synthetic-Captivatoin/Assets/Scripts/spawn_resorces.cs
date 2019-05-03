@@ -38,7 +38,7 @@ public class spawn_resorces : MonoBehaviour
 
             //PICK what type of Alife to spawn 
             //60% friendly 40% killer
-            if(Random.Range(0,10) <= 6){
+            if(Random.Range(0,10) <= 7.7){
                //spawn friendly nest
                nestSpawn.setFriendly(true);
 
@@ -62,10 +62,10 @@ public class spawn_resorces : MonoBehaviour
         zPos = Random.Range(-bounds.z / 2,bounds.z /2); 
 
         if(Random.Range(0,10) <= 4){
-            thisResource = Instantiate(foodPrefab, new Vector3(xPos, 0.3f, zPos), transform.rotation);
+            thisResource = Instantiate(foodPrefab, new Vector3(xPos, 2.5f, zPos), transform.rotation);
             
         } else {
-            thisResource = Instantiate(waterPrefeb, new Vector3(xPos, 0.3f, zPos), transform.rotation);
+            thisResource = Instantiate(waterPrefeb, new Vector3(xPos, 2.5f, zPos), transform.rotation);
         }
 
         Resource_Managment rManagment = thisResource.GetComponent<Resource_Managment>();

@@ -12,8 +12,7 @@ public class ALifeClass : MonoBehaviour
 
     public bool hasNeedNotFilled = false;  
 
-    //how fast the alive moves
-    public float speed;
+    //how fast the alive move
 
     //TRAILS OF LIFE
 
@@ -26,7 +25,7 @@ public class ALifeClass : MonoBehaviour
     public float thirst;
     public float rest;
     public float health;
-
+    public float movementSpeed;
     //reproduction drive
     //public float romance;
 
@@ -48,7 +47,7 @@ public class ALifeClass : MonoBehaviour
 
         //reproduction time
         Invoke("reproduce", Random.Range(50,73));
- 
+
         hunger = 100;
         thirst = 100;
         rest = 100;
@@ -262,29 +261,37 @@ public class ALifeClass : MonoBehaviour
     {
 
         Debug.Log("repo time");
-
-        
     
             //asexual stuff here
             GameObject spawn = Instantiate(ALifePrefab, gameObject.transform.position + new Vector3(Random.Range(-0.5f,0.5f), 0, Random.Range(-0.5f, 0.5f)), gameObject.transform.rotation);
             ALifeClass thisAlife = spawn.GetComponent<ALifeClass>();
 
-
             if(gameObject.tag == "ALife1"){
-                thisAlife.friendly = false;
+                thisAlife.friendly = true;
                 thisAlife.tag = "ALife1";
                 thisAlife.lifeColor = new Color(0, 0.8f, 0, 1f);
+                thisAlife.movementSpeed = Random.Range(18,25);
+
             } else {
-                thisAlife.friendly = true;
+                thisAlife.friendly = false;
                 thisAlife.tag = "ALife2";
                 thisAlife.lifeColor = new Color(0.8f, 0, 0, 1f);
+                thisAlife.movementSpeed = Random.Range(16,23);
+
             }
             thisAlife.changeColor(thisAlife.lifeColor);
+            
+            //WHY DOES THE NEXT LINE THROW AN ERROR?!
+            //Debug.Log(gameObject.movementSpeed);
 
+            //Debug.Log(gameObject.rest);
 
+            thisAlife.birthNest = (thisAlife)gameObject.birthNest;
+
+            thisAlife.movementSpeed = Random.Range(18,22);
             float scale = Random.Range(-0.1f,0.01f);
             thisAlife.transform.localScale = gameObject.transform.localScale + new Vector3(scale, scale, scale);
-            thisAlife.speed = 20f;
+            
 
             Invoke("reproduce", Random.Range(45,90));
         
@@ -340,7 +347,6 @@ public class ALifeClass : MonoBehaviour
                 rest = 100;
                 break;
             case "Food":
-                //reproduce();
                 hunger = 100;
                 break;
             //floor collisions happen a lot

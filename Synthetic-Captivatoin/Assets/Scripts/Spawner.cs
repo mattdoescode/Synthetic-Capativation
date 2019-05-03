@@ -39,18 +39,18 @@ public class Spawner : MonoBehaviour
         //can't instntiate with parameters so we do something else...
 
         //instanticate around the nest, and set nest to be the parent
-        GameObject spawned = Instantiate(ALifePrefab, transform.position + new Vector3(Random.Range(-8,8), .4f, Random.Range(-8, 8)), transform.rotation, gameObject.transform);
+        GameObject spawned = Instantiate(ALifePrefab, transform.position + new Vector3(Random.Range(-8,8), .5f, Random.Range(-8, 8)), transform.rotation, gameObject.transform);
         //spawned.transform.SetParent(gameObject.transform);
 
         ALifeClass thisAlife = spawned.GetComponent<ALifeClass>();
 
         float scaleFactor = Random.Range(.5f, 1.2f);
 
-        thisAlife.speed = Random.Range(15,24);
-
         spawned.transform.localScale += new Vector3(scaleFactor,scaleFactor,scaleFactor);
     
         thisAlife.birthNest = gameObject;
+
+        thisAlife.movementSpeed = Random.Range(15,24);
 
         if (friendly)
         {
