@@ -19,6 +19,7 @@ public class spawn_resorces : MonoBehaviour
     {
 
         Invoke("setupTerrain", 0);
+        InvokeRepeating("spawnFriendly", 120, Random.Range(55, 90));
     }
 
     void setupTerrain(){
@@ -36,7 +37,7 @@ public class spawn_resorces : MonoBehaviour
             thisNest = Instantiate(NestPrefab, new Vector3(xPos, 0.3f, zPos), transform.rotation);
             Spawner nestSpawn = thisNest.GetComponent<Spawner>();
 
-            //PICK what type of Alife to spawn 
+            //PICK what type of Alife to spawn
             //60% friendly 40% killer
             if(Random.Range(0,10) <= 7.7){
                //spawn friendly nest
@@ -52,7 +53,24 @@ public class spawn_resorces : MonoBehaviour
         for(int i=0; i < 45; i++){
             spawnFoodOrWater();
         }
-        Invoke("spawn", 5);
+        Invoke("spawn", 6);
+    }
+
+    void spawnFriendly()
+    {
+
+        Debug.Log("Spawning new nest");
+        Vector3 bounds = terrain.GetComponent<Collider>().bounds.size;
+
+        //Instantiate(waterPrefeb, new Vector3(xPos, 0, zPos), transform.rotation);
+
+        //spawn in everything initially
+        GameObject thisNest;
+        xPos = Random.Range(-bounds.x / 2, bounds.x / 2);
+        zPos = Random.Range(-bounds.z / 2, bounds.z / 2);
+        thisNest = Instantiate(NestPrefab, new Vector3(xPos, 0.3f, zPos), transform.rotation);
+        Spawner nestSpawn = thisNest.GetComponent<Spawner>();
+        nestSpawn.setFriendly(true);
     }
 
     void spawnFoodOrWater()
@@ -61,7 +79,7 @@ public class spawn_resorces : MonoBehaviour
         xPos = Random.Range(-bounds.x / 2,bounds.x /2);
         zPos = Random.Range(-bounds.z / 2,bounds.z /2); 
 
-        if(Random.Range(0,10) <= 4){
+        if(Random.Range(0,10) <= 3){
             thisResource = Instantiate(foodPrefab, new Vector3(xPos, 2.5f, zPos), transform.rotation);
             
         } else {
@@ -75,7 +93,7 @@ public class spawn_resorces : MonoBehaviour
     
     void spawn(){
         spawnFoodOrWater();
-        int x = Random.Range(3,14) + (preX / 2);
+        int x = Random.Range(6,14) + (preX / 2);
         Invoke("spawn", x);
     }
 

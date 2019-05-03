@@ -47,7 +47,10 @@ public class ALifeClass : MonoBehaviour
 
         //reproduction time
         //reproduction time
-
+        if (gameObject.tag == "ALife1")
+            Invoke("reproduce", Random.Range(25, 60));
+        else
+            Invoke("reproduce", Random.Range(45, 80));
 
         hunger = 100;
         thirst = 100;
@@ -286,10 +289,11 @@ public class ALifeClass : MonoBehaviour
             thisAlife.movementSpeed = movementSpeed + Random.Range(-2,2);
             float scale = Random.Range(-0.1f,0.01f);
             thisAlife.transform.localScale = gameObject.transform.localScale + new Vector3(scale, scale, scale);
-            
 
-            
-        
+            if(gameObject.tag == "ALife1")
+                    Invoke("reproduce", Random.Range(25, 60));
+            else
+                 Invoke("reproduce", Random.Range(45, 80));
         return;
     }
 
