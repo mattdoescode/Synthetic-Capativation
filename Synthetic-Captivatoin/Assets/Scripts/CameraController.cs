@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+
 
 public class CameraController : MonoBehaviour
 {
@@ -60,6 +62,12 @@ public class CameraController : MonoBehaviour
         {
             transform.Translate(p);
         }
+        
+        if(Input.GetKeyDown("q"))
+        {
+            SceneManager.LoadScene("random_gen");
+        }
+
 
     }
 
