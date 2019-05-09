@@ -281,11 +281,12 @@ public class ALifeClass : MonoBehaviour
                 thisAlife.tag = "ALife2";
                 thisAlife.lifeColor = new Color(0.8f, 0, 0, 1f);
                 thisAlife.movementSpeed = Random.Range(16,23);
-
             }
+
+            thisAlife.hunger = Random.Range(10, 32);
+            thisAlife.thirst = Random.Range(10, 32);
             thisAlife.changeColor(thisAlife.lifeColor);
             thisAlife.birthNest = birthNest;
-
             thisAlife.movementSpeed = movementSpeed + Random.Range(-2,2);
             float scale = Random.Range(-0.1f,0.01f);
             thisAlife.transform.localScale = gameObject.transform.localScale + new Vector3(scale, scale, scale);
